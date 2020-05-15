@@ -42,15 +42,31 @@
             <label for="event-audience">Choose recipients</label>
             <input type="text" class="form-control" id="custom-audience"
                 placeholder="enter ; separated list of recipients and/or select from below"><br>
-            <ul class="checkbox-grid" style="list-style: none;">
-                <li><input type="checkbox" name="text1" value="value1" /><label for="text1">Text 1</label></li>
-                <li><input type="checkbox" name="text2" value="value2" /><label for="text2">Text 2</label></li>
-                <li><input type="checkbox" name="text3" value="value3" /><label for="text3">Text 3</label></li>
-                <li><input type="checkbox" name="text4" value="value4" /><label for="text4">Text 4</label></li>
-                <li><input type="checkbox" name="text5" value="value5" /><label for="text5">Text 5</label></li>
-                <li><input type="checkbox" name="text6" value="value6" /><label for="text6">Text 6</label></li>
-                <li><input type="checkbox" name="text7" value="value7" /><label for="text7">Text 7</label></li>
-                <li><input type="checkbox" name="text8" value="value8" /><label for="text8">Text 8</label></li>
+            <ul class="checkbox-grid" style="list-style: none;" id="audience-group">
+                <li><input type="checkbox" name="text1" value="email1" class="audience" /><label for="text1">Name
+                        1</label>
+                </li>
+                <li><input type="checkbox" name="text2" value="email2" class="audience" /><label for="text2">Name
+                        2</label>
+                </li>
+                <li><input type="checkbox" name="text3" value="email3" class="audience" /><label for="text3">Name
+                        3</label>
+                </li>
+                <li><input type="checkbox" name="text4" value="email4" class="audience" /><label for="text4">Name
+                        4</label>
+                </li>
+                <li><input type="checkbox" name="text5" value="email5" class="audience" /><label for="text5">Name
+                        5</label>
+                </li>
+                <li><input type="checkbox" name="text6" value="email6" class="audience" /><label for="text6">Name
+                        6</label>
+                </li>
+                <li><input type="checkbox" name="text7" value="email7" class="audience" /><label for="text7">Name
+                        7</label>
+                </li>
+                <li><input type="checkbox" name="text8" value="email8" class="audience" /><label for="text8">Name
+                        8</label>
+                </li>
             </ul>
         </div><br><br>
         <br>
@@ -67,7 +83,16 @@
             </ul>
         </div><br>
         <div class="container">
-            <button type="button" class="btn btn-success">Raise event</button>
+            <button type="button" class="btn btn-success" (click)="getValues()">Raise event</button>
         </div><br>
     </div><br>
 </div><br>
+
+<hr>
+<div class="container">
+    <h2>Preview</h2>
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="assets/sample.html" allowfullscreen></iframe>
+    </div>
+</div>
+<br><br><br>

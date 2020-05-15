@@ -11,7 +11,7 @@ import { EventServiceService } from './services/event-service.service';
   declarations: [
     AppComponent,
     AdminComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
