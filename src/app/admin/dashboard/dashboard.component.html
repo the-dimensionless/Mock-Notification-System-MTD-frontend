@@ -1,0 +1,73 @@
+<nav class="navbar navbar-dark bg-dark">
+    <div>
+        <header>Raise an event</header>
+    </div>
+</nav>
+<hr>
+
+<div class="container">
+    <div class="container message">
+
+    </div>
+    <br>
+    <div class="container creation">
+        <div class="form-group">
+            <label for="event-type">Event Type ?</label>
+            <select class="form-control">
+                <option value="">Event/Celebration</option>
+                <option value="">Urgent Help</option>
+                <option value="">Holiday</option>
+                <option value="">Nagarro News</option>
+                <option value="">News Policy</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="event-template">Choose a template</label>
+            <select class="form-control">
+                <option value="t1">Template 1</option>
+                <option value="t2">Template 2</option>
+                <option value="t3">Template 3</option>
+                <option value="t4">Template 4</option>
+                <option value="t5">Template 5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="template-preview">Preview</label>
+            <div class="container">
+                <textarea class="form-control" rows="6" [disabled]="editable"></textarea><br>
+                <button type="button" class="btn btn-primary" (click)="enableEdit()">Edit</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="event-audience">Choose recipients</label>
+            <input type="text" class="form-control" id="custom-audience"
+                placeholder="enter ; separated list of recipients and/or select from below"><br>
+            <ul class="checkbox-grid" style="list-style: none;">
+                <li><input type="checkbox" name="text1" value="value1" /><label for="text1">Text 1</label></li>
+                <li><input type="checkbox" name="text2" value="value2" /><label for="text2">Text 2</label></li>
+                <li><input type="checkbox" name="text3" value="value3" /><label for="text3">Text 3</label></li>
+                <li><input type="checkbox" name="text4" value="value4" /><label for="text4">Text 4</label></li>
+                <li><input type="checkbox" name="text5" value="value5" /><label for="text5">Text 5</label></li>
+                <li><input type="checkbox" name="text6" value="value6" /><label for="text6">Text 6</label></li>
+                <li><input type="checkbox" name="text7" value="value7" /><label for="text7">Text 7</label></li>
+                <li><input type="checkbox" name="text8" value="value8" /><label for="text8">Text 8</label></li>
+            </ul>
+        </div><br><br>
+        <br>
+        <div class="form-group">
+            <label for="event-date">Event Date</label>
+            <input type="date" class="form-control" id="eventDate">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="event-mode">Event Communication Mode</label>
+            <ul class="checkbox-grid" style="list-style: none;">
+                <li><input type="checkbox" name="text1" value="Sms" /><label for="text1">Sms</label></li>
+                <li><input type="checkbox" name="text2" value="Mail" /><label for="text2">Mail</label></li>
+            </ul>
+        </div><br>
+        <div class="container">
+            <button type="button" class="btn btn-success">Raise event</button>
+        </div><br>
+    </div><br>
+</div><br>

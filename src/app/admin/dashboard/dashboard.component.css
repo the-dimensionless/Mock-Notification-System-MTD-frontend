@@ -1,0 +1,9 @@
+.navbar {
+    color: aliceblue;
+}
+
+.checkbox-grid li {
+    display: block;
+    float: left;
+    width: 25%;
+  }
