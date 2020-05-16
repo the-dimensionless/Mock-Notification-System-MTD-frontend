@@ -1,15 +1,7 @@
 import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { EventServiceService } from 'src/app/services/event-service.service';
-import { DomSanitizer } from '@angular/platform-browser';
-import { Url } from 'url';
-
-@Pipe({ name: 'safe' })
-export class SafePipe implements PipeTransform {
-  constructor(private sanitizer: DomSanitizer) { }
-  transform(url) {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-  }
-}
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,12 +11,18 @@ export class SafePipe implements PipeTransform {
 export class DashboardComponent implements OnInit {
 
   editable: boolean;
+  public Editor = ClassicEditor;
 
   constructor(private service: EventServiceService) {
     this.editable = true;
   }
 
   ngOnInit(): void {
+  }
+
+  public onChange({ editor }: ChangeEvent) {
+    const data = editor.getData();
+    console.log(data);
   }
 
   getValues() {

@@ -34,8 +34,24 @@
         <div class="form-group">
             <label for="template-preview">Preview</label>
             <div class="container">
-                <textarea class="form-control" rows="6" [disabled]="editable"></textarea><br>
-                <button type="button" class="btn btn-primary" (click)="enableEdit()">Edit</button>
+                <!-- <textarea class="form-control" rows="6" [disabled]="editable"></textarea><br>
+                <button type="button" class="btn btn-primary" (click)="enableEdit()">Edit</button> -->
+                <ngb-tabset [destroyOnHide]="false">
+                    <ngb-tab title="Basic Email Preview">
+                        <ng-template ngbTabContent>
+                            <ckeditor [editor]="Editor" data="<p>Hello, world!</p>" (change)="onChange($event)">
+                            </ckeditor>
+                        </ng-template>
+                    </ngb-tab>
+
+                    <ngb-tab>
+                        <ng-template ngbTabTitle>SMS Setting</ng-template>
+                        <ng-template ngbTabContent>
+                            <textarea class="form-control" rows="6" [disabled]="editable"></textarea><br>
+                            <button type="button" class="btn btn-primary" (click)="enableEdit()">Edit</button>
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
             </div>
         </div>
         <div class="form-group">
@@ -89,10 +105,3 @@
 </div><br>
 
 <hr>
-<div class="container">
-    <h2>Preview</h2>
-    <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="assets/sample.html" allowfullscreen></iframe>
-    </div>
-</div>
-<br><br><br>
