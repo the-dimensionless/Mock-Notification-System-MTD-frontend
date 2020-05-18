@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
 
   mailTemplates: any;
   smsTemplates: any;
+  eventTypes: any;
 
   smsBody: string;
 
@@ -59,6 +60,17 @@ export class DashboardComponent implements OnInit {
   }
 
   loadDefaults() {
+
+    this.service.getEventTypes().subscribe(
+      res => {
+        console.log("res", res);
+        this.eventTypes = res;
+      },
+      err => {
+        console.log("error", err);
+      }
+    )
+
     this.service.getAllSmsTemplates().subscribe(
       res => {
         console.log("res", res);

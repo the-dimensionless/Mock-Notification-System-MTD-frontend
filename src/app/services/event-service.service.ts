@@ -6,6 +6,13 @@ export class EventServiceService {
 
   constructor(private http: HttpClient) { }
 
+  getEventTypes() {
+    return this.http.get("server/events");
+  }
+
+  addNewEventType(eventType) {
+    return this.http.post("server/events/addNew/EventType", eventType);
+  }
   getAllSmsTemplates() {
     return this.http.get("server/events/smsTemplates/");
   }

@@ -14,11 +14,7 @@
         <div class="form-group">
             <label for="event-type">Event Type ?</label>
             <select class="form-control">
-                <option value="">Event/Celebration</option>
-                <option value="">Urgent Help</option>
-                <option value="">Holiday</option>
-                <option value="">Nagarro News</option>
-                <option value="">News Policy</option>
+                <option *ngFor="let event of eventTypes" value="{{event.eventType}}">{{event.eventType}}</option>
             </select>
         </div>
         <div class="form-group">
