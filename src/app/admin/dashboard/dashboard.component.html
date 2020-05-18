@@ -22,13 +22,24 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="event-template">Choose a template</label>
+            <label for="event-template">Choose an email template</label>
             <select class="form-control">
-                <option value="t1">Template 1</option>
+                <div *ngFor="let t of mailTemplates">
+                    <option value="{{t.templateId}}">{{t.templateDescription}}</option>
+                </div>
                 <option value="t2">Template 2</option>
                 <option value="t3">Template 3</option>
                 <option value="t4">Template 4</option>
                 <option value="t5">Template 5</option>
+            </select>
+            <br>
+            <label for="event-template">Choose a sms template</label>
+            <select class="form-control" *ngFor="let t of smsTemplates">
+                <option value="{{t.templateId}}">{{t.templateDescription}}</option>
+                <!-- <option value="t2">Template 2</option>
+                <option value="t3">Template 3</option>
+                <option value="t4">Template 4</option>
+                <option value="t5">Template 5</option> -->
             </select>
         </div>
         <div class="form-group">
@@ -39,7 +50,7 @@
                 <ngb-tabset [destroyOnHide]="false">
                     <ngb-tab title="Basic Email Preview">
                         <ng-template ngbTabContent>
-                            <ckeditor [editor]="Editor" data="<p>Hello, world!</p>" (change)="onChange($event)">
+                            <ckeditor [editor]="Editor" [data]="data" (change)="onChange($event)">
                             </ckeditor>
                         </ng-template>
                     </ngb-tab>
@@ -47,7 +58,8 @@
                     <ngb-tab>
                         <ng-template ngbTabTitle>SMS Setting</ng-template>
                         <ng-template ngbTabContent>
-                            <textarea class="form-control" rows="6" [disabled]="editable"></textarea><br>
+                            <textarea class="form-control" [(value)]="smsBody" rows="6"
+                                [disabled]="editable"></textarea><br>
                             <button type="button" class="btn btn-primary" (click)="enableEdit()">Edit</button>
                         </ng-template>
                     </ngb-tab>

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
@@ -20,6 +21,7 @@ import { EventServiceService } from './services/event-service.service';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    HttpClientModule,
     CKEditorModule
   ],
   providers: [EventServiceService],

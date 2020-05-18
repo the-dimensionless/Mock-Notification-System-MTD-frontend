@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class EventServiceService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getAllSmsTemplates() {
+    return this.http.get("server/events/smsTemplates/");
+  }
+
+  getAllMailTemplates() {
+    return this.http.get("server/events/mailTemplates/");
+  }
+
+
 }
