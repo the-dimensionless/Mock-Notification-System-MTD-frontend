@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { IEvent } from '../entities/event';
 
 @Injectable()
 export class EventServiceService {
@@ -19,6 +20,14 @@ export class EventServiceService {
 
   getAllMailTemplates() {
     return this.http.get("server/events/mailTemplates/");
+  }
+
+  getUserDetails() {
+    return this.http.get("server/user");
+  }
+
+  raiseEvent(event: IEvent) {
+    return this.http.post("server/events/activeEvents", event);
   }
 
 

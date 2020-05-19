@@ -1,12 +1,11 @@
-import { Template } from './template';
-
-export interface Event {
-    eventId: number;
-    eventTitle: string;
-    eventTemplate: Template;
-    eventDate: Date;
-    eventRecipients: [];
-    description: string;
-    imageUrl: string,
-    eventMode: string[]
+export interface IEvent {
+    eventType: string;
+    eventName: string;
+    eventDescription: string;
+    eventMailBody: string;
+    eventSmsBody: string;
+    eventStatus: boolean;
+    eventEmails: string[];
+    eventPhones: string[];
+    eventDateTime: string;
 }

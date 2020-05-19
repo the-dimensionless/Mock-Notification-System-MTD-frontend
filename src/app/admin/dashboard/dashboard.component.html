@@ -23,9 +23,17 @@
     <div class="container creation">
         <div class="form-group">
             <label for="event-type">Event Type ?</label>
-            <select class="form-control">
+            <select class="form-control" id="event-type">
                 <option *ngFor="let event of eventTypes" value="{{event.eventType}}">{{event.eventType}}</option>
             </select>
+        </div>
+        <div class="form-group">
+            <label for="event-type">Event Name</label>
+            <input type="text" placeholder="Enter event name . . ." class="form-control" id="event-name">
+        </div>
+        <div class="form-group">
+            <label for="event-type">Event Description</label>
+            <input type="text" placeholder="Enter event description . . ." class="form-control" id="event-description">
         </div>
         <div class="form-group">
             <label for="event-template">Choose an email template</label>
@@ -54,7 +62,7 @@
                     <ngb-tab>
                         <ng-template ngbTabTitle>SMS Setting</ng-template>
                         <ng-template ngbTabContent>
-                            <textarea class="form-control" [(value)]="smsBody" rows="6"
+                            <textarea class="form-control" [(value)]="smsBody" rows="6" id="smsBody"
                                 [disabled]="editable"></textarea><br>
                             <button type="button" class="btn btn-primary" (click)="enableEdit()">Edit</button>
                         </ng-template>
@@ -67,29 +75,9 @@
             <input type="text" class="form-control" id="custom-audience"
                 placeholder="enter ; separated list of recipients and/or select from below"><br>
             <ul class="checkbox-grid" style="list-style: none;" id="audience-group">
-                <li><input type="checkbox" name="text1" value="email1" class="audience" /><label for="text1">Name
-                        1</label>
-                </li>
-                <li><input type="checkbox" name="text2" value="email2" class="audience" /><label for="text2">Name
-                        2</label>
-                </li>
-                <li><input type="checkbox" name="text3" value="email3" class="audience" /><label for="text3">Name
-                        3</label>
-                </li>
-                <li><input type="checkbox" name="text4" value="email4" class="audience" /><label for="text4">Name
-                        4</label>
-                </li>
-                <li><input type="checkbox" name="text5" value="email5" class="audience" /><label for="text5">Name
-                        5</label>
-                </li>
-                <li><input type="checkbox" name="text6" value="email6" class="audience" /><label for="text6">Name
-                        6</label>
-                </li>
-                <li><input type="checkbox" name="text7" value="email7" class="audience" /><label for="text7">Name
-                        7</label>
-                </li>
-                <li><input type="checkbox" name="text8" value="email8" class="audience" /><label for="text8">Name
-                        8</label>
+                <li *ngFor="let user of userDetails">
+                    <input type="checkbox" name="text1" value="{{user.userId}}" class="audience" />
+                    <label for="text1">{{user.userName}}</label>
                 </li>
             </ul>
         </div><br><br>
@@ -102,8 +90,8 @@
         <div class="form-group">
             <label for="event-mode">Event Communication Mode</label>
             <ul class="checkbox-grid" style="list-style: none;">
-                <li><input type="checkbox" name="text1" value="Sms" /><label for="text1">Sms</label></li>
-                <li><input type="checkbox" name="text2" value="Mail" /><label for="text2">Mail</label></li>
+                <li><input type="checkbox" name="text1" value="Sms" class="mode" /><label for="text1">Sms</label></li>
+                <li><input type="checkbox" name="text2" value="Mail" class="mode" /><label for="text2">Mail</label></li>
             </ul>
         </div><br>
         <div class="container">

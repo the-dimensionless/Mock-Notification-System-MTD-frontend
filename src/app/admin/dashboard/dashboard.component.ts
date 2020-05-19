@@ -1,9 +1,9 @@
-import { Component, OnInit, Pipe, PipeTransform, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EventServiceService } from 'src/app/services/event-service.service';
 /* import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'; */
 import * as ClassicEditor from '../../../assets/js/build/ckeditor.js';
 import { ChangeEvent, CKEditorComponent } from '@ckeditor/ckeditor5-angular';
-import { templateJitUrl } from '@angular/compiler';
+import { IEvent } from '../../entities/event';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,8 +21,10 @@ export class DashboardComponent implements OnInit {
   mailTemplates: any;
   smsTemplates: any;
   eventTypes: any;
+  userDetails: any;
 
   smsBody: string;
+  event: IEvent = {} as any;
 
   constructor(private service: EventServiceService) {
     this.editable = true;
@@ -39,22 +41,79 @@ export class DashboardComponent implements OnInit {
     console.log(data); */
   }
 
-  getValues() {
-
+  getListOfEmails(): string[] {
+    let emails = [];
     let customAudience = (<HTMLInputElement>document.getElementById("custom-audience")).value;
+
     if (customAudience != '') {
-      console.log("custom audience : ", customAudience.split(";").toString());
+      customAudience.split(";").forEach(i => emails.push(i));
     }
 
     const values = Array
       .from(document.querySelectorAll('[class="audience"]'))
       .filter((checkbox) => checkbox["checked"])
       .map((checkbox) => checkbox["value"]);
-    console.log("values :", values);
 
-    this.data = "<html><head></head><body>" + this.data + "</body></html>";
-    console.log(this.data);
+    values.forEach(id => {
+      emails.push(
+        this.userDetails.filter(function (item) {
+          if (item.userId == id) {
+            return item.userEmail;
+          }
+        })[0]["userEmail"]
+      )
+    })
+    return emails;
+  }
 
+  getListOfPhones(): string[] {
+    let phones = [];
+
+    const values = Array
+      .from(document.querySelectorAll('[class="audience"]'))
+      .filter((checkbox) => checkbox["checked"])
+      .map((checkbox) => checkbox["value"]);
+
+    values.forEach(id => {
+      phones.push(
+        this.userDetails.filter(function (item) {
+          if (item.userId == id) {
+            return item.userEmail;
+          }
+        })[0]["userPhone"]
+      )
+    })
+    return phones;
+  }
+
+  getValues() {
+
+    this.event.eventType = (<HTMLInputElement>document.getElementById("event-type")).value;
+    this.event.eventName = (<HTMLInputElement>document.getElementById("event-name")).value;
+    this.event.eventDescription = (<HTMLInputElement>document.getElementById("event-description")).value;
+
+    this.event.eventEmails = this.getListOfEmails();
+    this.event.eventPhones = this.getListOfPhones();
+    this.data = "<html><head></head><body>" + this.editorComponent.editorInstance.getData(); + "</body></html>";
+    this.event.eventMailBody = this.data;
+    this.event.eventSmsBody = (<HTMLInputElement>document.getElementById("smsBody")).value;
+
+    const modes = Array
+      .from(document.querySelectorAll('[class="mode"]'))
+      .filter((checkbox) => checkbox["checked"])
+      .map((checkbox) => checkbox["value"]);
+    console.log("modes :", modes);
+
+    if (!modes.includes("Mail")) {
+      this.event.eventEmails = null;
+      this.event.eventMailBody = null;
+    }
+    if (!modes.includes("Sms")) {
+      this.event.eventPhones = null;
+      this.event.eventSmsBody = null;
+    }
+    console.log(this.event);
+    this.log();
   }
 
   enableEdit() {
@@ -89,6 +148,15 @@ export class DashboardComponent implements OnInit {
         console.log("error", err);
       }
     )
+
+    this.service.getUserDetails().subscribe(
+      res => {
+        this.userDetails = res;
+      },
+      err => {
+        console.log("error", err);
+      }
+    )
   }
 
   etSelected(event) {
@@ -107,6 +175,20 @@ export class DashboardComponent implements OnInit {
         return item.smsBody;
       }
     })["0"]["smsBody"];
+  }
+
+  log() {
+    this.event.eventStatus = true;
+    this.event.eventDateTime = (<HTMLInputElement>document.getElementById("eventDate")).value;
+
+    this.service.raiseEvent(this.event).subscribe(
+      data => {
+        console.log("Event rasied", data)
+      },
+      err => {
+        console.log("error", err);
+      }
+    )
   }
 
 }
