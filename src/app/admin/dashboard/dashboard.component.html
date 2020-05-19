@@ -2,6 +2,16 @@
     <div>
         <header>Raise an event</header>
     </div>
+    <div>
+        <a>
+            <header>Create Custom Event</header>
+        </a>
+    </div>
+    <div>
+        <a>
+            <header>Create Custom Template</header>
+        </a>
+    </div>
 </nav>
 <hr>
 
@@ -19,23 +29,13 @@
         </div>
         <div class="form-group">
             <label for="event-template">Choose an email template</label>
-            <select class="form-control">
-                <div *ngFor="let t of mailTemplates">
-                    <option value="{{t.templateId}}">{{t.templateDescription}}</option>
-                </div>
-                <option value="t2">Template 2</option>
-                <option value="t3">Template 3</option>
-                <option value="t4">Template 4</option>
-                <option value="t5">Template 5</option>
+            <select class="form-control" (change)="etSelected($event)">
+                <option *ngFor="let t of mailTemplates" value="{{t.templateId}}">{{t.templateDescription}}</option>
             </select>
             <br>
             <label for="event-template">Choose a sms template</label>
-            <select class="form-control" *ngFor="let t of smsTemplates">
-                <option value="{{t.templateId}}">{{t.templateDescription}}</option>
-                <!-- <option value="t2">Template 2</option>
-                <option value="t3">Template 3</option>
-                <option value="t4">Template 4</option>
-                <option value="t5">Template 5</option> -->
+            <select class="form-control" (change)="stSelected($event)">
+                <option *ngFor="let t of smsTemplates" value="{{t.templateId}}">{{t.templateDescription}}</option>
             </select>
         </div>
         <div class="form-group">
@@ -46,7 +46,7 @@
                 <ngb-tabset [destroyOnHide]="false">
                     <ngb-tab title="Basic Email Preview">
                         <ng-template ngbTabContent>
-                            <ckeditor [editor]="Editor" [data]="data" (change)="onChange($event)">
+                            <ckeditor #binding [editor]="Editor" [(data)]="data" (change)="onChange($event)">
                             </ckeditor>
                         </ng-template>
                     </ngb-tab>

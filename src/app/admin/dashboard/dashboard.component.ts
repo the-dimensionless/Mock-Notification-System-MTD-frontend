@@ -1,8 +1,9 @@
-import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform, ViewChild } from '@angular/core';
 import { EventServiceService } from 'src/app/services/event-service.service';
 /* import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'; */
 import * as ClassicEditor from '../../../assets/js/build/ckeditor.js';
-import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
+import { ChangeEvent, CKEditorComponent } from '@ckeditor/ckeditor5-angular';
+import { templateJitUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,6 +11,8 @@ import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+  @ViewChild('binding') editorComponent: CKEditorComponent;
 
   editable: boolean;
   public Editor = ClassicEditor;
@@ -25,7 +28,6 @@ export class DashboardComponent implements OnInit {
     this.editable = true;
     this.data = "<p>Hello World !</p>";
     this.loadDefaults();
-
     this.smsBody = "Sample Text";
   }
 
@@ -63,7 +65,6 @@ export class DashboardComponent implements OnInit {
 
     this.service.getEventTypes().subscribe(
       res => {
-        console.log("res", res);
         this.eventTypes = res;
       },
       err => {
@@ -73,7 +74,6 @@ export class DashboardComponent implements OnInit {
 
     this.service.getAllSmsTemplates().subscribe(
       res => {
-        console.log("res", res);
         this.smsTemplates = res;
       },
       err => {
@@ -83,15 +83,30 @@ export class DashboardComponent implements OnInit {
 
     this.service.getAllMailTemplates().subscribe(
       res => {
-        console.log("res", res);
         this.mailTemplates = res;
       },
       err => {
         console.log("error", err);
       }
     )
+  }
 
+  etSelected(event) {
+    this.data = this.mailTemplates.filter(function (item) {
+      if (item.templateId == event.target.value) {
+        return item.mailBody;
+      }
+    })["0"]["mailBody"];
 
+    this.editorComponent.editorInstance.setData(this.data);
+  }
+
+  stSelected(event) {
+    this.smsBody = this.smsTemplates.filter(function (item) {
+      if (item.templateId == event.target.value) {
+        return item.smsBody;
+      }
+    })["0"]["smsBody"];
   }
 
 }
