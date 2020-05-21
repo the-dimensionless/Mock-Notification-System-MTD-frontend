@@ -41,6 +41,10 @@ export class DashboardComponent implements OnInit {
     this.route.navigate(["admin/edits"]);
   }
 
+  gotoCustomize() {
+    this.route.navigate(["admin/customize"]);
+  }
+
   public onChange({ editor }: ChangeEvent) {
     /* const data = editor.getData();
     console.log(data); */

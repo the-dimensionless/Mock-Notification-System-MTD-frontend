@@ -1,0 +1,60 @@
+<nav class="navbar navbar-dark bg-dark">
+    <div>
+        <a [routerLink]="" (click)="gotoDashboard()">
+            <header>Dashboard</header>
+        </a>
+    </div>
+    <div>
+        <header>Customize</header>
+    </div>
+    <div>
+        <a [routerLink]="" (click)="gotoCancel()">
+            <header>Cancel Notifications</header>
+        </a>
+    </div>
+</nav>
+<br>
+<div class="container">
+    <div *ngIf="valid">
+        {{msg}}
+    </div>
+</div>
+<div class="container">
+    <h3>Add New Event Type</h3>
+    <form class="form" #form="ngForm">
+        <div class="form-group">
+            <input type="text" name="name" placeholder="Enter new Event Type" #name="ngModel" ngModel
+                [class.field-error]="form.submitted && name.invalid" class="form-control" required>
+        </div>
+        <div [hidden]="name.valid || name.untouched" class="alert alert-danger col-sm">
+            Please enter a valid EventType
+        </div>
+
+        <button type="submit" class="btn btn-success" (click)="addEventType()">Add Event Type</button>
+    </form>
+</div>
+<hr>
+<div class="container">
+    <h3>Add New Email Template</h3>
+    <form class="form" #mail="ngForm">
+        <div class="form-group">
+            <ckeditor #binding [editor]="Editor" [data]="data" (change)="onChange($event)">
+            </ckeditor>
+        </div>
+        <button type="submit" class="btn btn-success" (click)="addMailType()">Add Template</button>
+    </form>
+</div>
+<hr>
+<div class="container">
+    <h3>Add New Sms Template</h3>
+    <form class="form" #sms="ngForm">
+        <div class="form-group">
+            <textarea class="form-control" name="sms" rows="5" #sms="ngModel" ngModel></textarea>
+        </div>
+        <div [hidden]="sms.valid || sms.untouched" class="alert alert-danger col-sm">
+            Please enter a valid Sms Body
+        </div>
+        <button type="submit" class="btn btn-success" (click)="addSmsType()">Add Template</button>
+    </form>
+</div>
+<br><br>
