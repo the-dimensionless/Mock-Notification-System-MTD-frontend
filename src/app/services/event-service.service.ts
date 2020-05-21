@@ -38,5 +38,30 @@ export class EventServiceService {
     return this.http.get("server/events/activeEvents/" + id);
   }
 
+  addEventType(event: string) {
+    let body = {
+      "eventType": event
+    };
+    return this.http.post("server/events/addNew/EventType", body);
+  }
+
+  addMailType(mailBody) {
+    let body = {
+      "mailBody": mailBody
+    };
+    return this.http.post("server/events/mailTemplates", body);
+  }
+
+  addSmsType(smsBody) {
+    let body = {
+      "smsBody": smsBody
+    };
+    return this.http.post("server/events/smsTemplates", body);
+  }
+
+  getTest() {
+    return this.http.get("server/events/test/fetch/" + 8);
+  }
+
 
 }
