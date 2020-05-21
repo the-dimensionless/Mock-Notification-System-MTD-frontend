@@ -30,5 +30,13 @@ export class EventServiceService {
     return this.http.post("server/events/activeEvents", event);
   }
 
+  getAllActiveEvents() {
+    return this.http.get("server/events/activeEvents");
+  }
+
+  cancelEventId(id) {
+    return this.http.get("server/events/activeEvents/" + id);
+  }
+
 
 }

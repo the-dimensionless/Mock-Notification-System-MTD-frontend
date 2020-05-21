@@ -4,6 +4,7 @@ import { EventServiceService } from 'src/app/services/event-service.service';
 import * as ClassicEditor from '../../../assets/js/build/ckeditor.js';
 import { ChangeEvent, CKEditorComponent } from '@ckeditor/ckeditor5-angular';
 import { IEvent } from '../../entities/event';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +27,7 @@ export class DashboardComponent implements OnInit {
   smsBody: string;
   event: IEvent = {} as any;
 
-  constructor(private service: EventServiceService) {
+  constructor(private service: EventServiceService, private route: Router) {
     this.editable = true;
     this.data = "<p>Hello World !</p>";
     this.loadDefaults();
@@ -34,6 +35,10 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  gotoEdit() {
+    this.route.navigate(["admin/edits"]);
   }
 
   public onChange({ editor }: ChangeEvent) {
@@ -94,7 +99,7 @@ export class DashboardComponent implements OnInit {
 
     this.event.eventEmails = this.getListOfEmails();
     this.event.eventPhones = this.getListOfPhones();
-    this.data = "<html><head></head><body>" + this.editorComponent.editorInstance.getData(); + "</body></html>";
+    this.data = "<html><head></head><body>" + this.editorComponent.editorInstance.getData() + "</body></html>";
     this.event.eventMailBody = this.data;
     this.event.eventSmsBody = (<HTMLInputElement>document.getElementById("smsBody")).value;
 

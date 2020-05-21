@@ -1,0 +1,44 @@
+<nav class="navbar navbar-dark bg-dark">
+    <div>
+        <a [routerLink]="" (click)="gotoHome()">
+            Dashboard
+        </a>
+    </div>
+    <div>
+        <button class="btn btn-danger">Logout</button>
+    </div>
+</nav>
+<hr>
+<div class="container">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Currently Active Notification</h1>
+            <p class="lead" *ngIf="valid">You can cancel any notification from here.</p>
+            <p class="alert alert-info" *ngIf="!valid">{{msg}}</p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#Notification</th>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let e of events">
+            <tr>
+                <th scope="row">
+                    <button type="button" class="btn btn-primary" (click)="cancel(e.eventId)">Cancel</button>
+                </th>
+                <td>{{e.eventId}}</td>
+                <td>{{e.eventName}}</td>
+                <td>{{e.eventType}}</td>
+                <td>{{e.eventDateTime}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
