@@ -46,17 +46,11 @@ export class EventServiceService {
   }
 
   addMailType(mailBody) {
-    let body = {
-      "mailBody": mailBody
-    };
-    return this.http.post("server/events/mailTemplates", body);
+    return this.http.post("server/events/mailTemplates", mailBody);
   }
 
   addSmsType(smsBody) {
-    let body = {
-      "smsBody": smsBody
-    };
-    return this.http.post("server/events/smsTemplates", body);
+    return this.http.post("server/events/smsTemplates", smsBody);
   }
 
   getTest() {
@@ -65,6 +59,10 @@ export class EventServiceService {
 
   userSubscribes(eventId, email, phone) {
     return this.http.get("server/events/subscribe/" + eventId + "/" + email + "/" + phone);
+  }
+
+  userUnSubscribes(eventId, email, phone) {
+    return this.http.get("server/events/unsubscribe/" + eventId + "/" + email + "/" + phone);
   }
 
 

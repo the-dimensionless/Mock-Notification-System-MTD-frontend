@@ -19,19 +19,24 @@ export class CustomizeComponent implements OnInit {
   public data;
 
   valid: boolean;
+  eventValid: boolean;
+  mailValid: boolean;
+  smsValid: boolean;
   msg: string;
 
   eventTypeForm: NgForm
 
   constructor(private service: EventServiceService, private route: Router) {
-    this.service.getTest().subscribe(
-      data => {
-        console.log("data", data);
-      },
-      err => {
-        console.log("error", err);
-      }
-    )
+    this.eventValid = this.mailValid = this.smsValid = false;
+    /*   this.service.getTest().subscribe(
+        data => {
+          console.log("data", data);
+          this.editorComponent.editorInstance.setData(data["eventMailBody"]);
+        },
+        err => {
+          console.log("error", err);
+        }
+      ) */
   }
 
   ngOnInit(): void {
@@ -43,14 +48,54 @@ export class CustomizeComponent implements OnInit {
 
   addEventType() {
     console.log("We are here: event type");
+    let body = {
+      "eventType": (<HTMLInputElement>document.getElementById("eventType")).value
+    }
+    this.service.addNewEventType(body).subscribe(
+      data => {
+        this.eventValid = true;
+      },
+      err => {
+        console.log("error", err);
+      }
+    )
   }
 
   addSmsType() {
     console.log("We are here: sms type");
+    let body = {
+      "templateDescription": (<HTMLInputElement>document.getElementById("smsDescription")).value,
+      "smsBody": (<HTMLInputElement>document.getElementById("smsText")).value
+    };
+    console.log(body);
+    this.service.addSmsType(body).subscribe(
+      data => {
+        console.log("sms type added", data);
+        this.smsValid = true;
+      },
+      err => {
+        console.log("error", err);
+      }
+    )
   }
 
   addMailType() {
     console.log("We are here: mail type");
+    let body = {
+      "templateDescription": "<html><head></head><body>" +
+        (<HTMLInputElement>document.getElementById("mailDescription")).value + "</body></html>",
+      "mailBody": this.editorComponent.editorInstance.getData()
+    };
+    console.log(body);
+    this.service.addMailType(body).subscribe(
+      data => {
+        console.log("mail type added", data);
+        this.mailValid = true;
+      },
+      err => {
+        console.log("error", err);
+      }
+    )
   }
 
   gotoDashboard() {

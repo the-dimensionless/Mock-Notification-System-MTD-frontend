@@ -21,9 +21,10 @@
 </div>
 <div class="container">
     <h3>Add New Event Type</h3>
+    <p *ngIf="eventValid" class="alert alert-success">Added Successfully</p>
     <form class="form" #form="ngForm">
         <div class="form-group">
-            <input type="text" name="name" placeholder="Enter new Event Type" #name="ngModel" ngModel
+            <input type="text" id="eventType" name="name" placeholder="Enter new Event Type" #name="ngModel" ngModel
                 [class.field-error]="form.submitted && name.invalid" class="form-control" required>
         </div>
         <div [hidden]="name.valid || name.untouched" class="alert alert-danger col-sm">
@@ -36,10 +37,14 @@
 <hr>
 <div class="container">
     <h3>Add New Email Template</h3>
+    <p *ngIf="mailValid" class="alert alert-success">Added Successfully</p>
     <form class="form" #mail="ngForm">
         <div class="form-group">
             <ckeditor #binding [editor]="Editor" [data]="data" (change)="onChange($event)">
             </ckeditor>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder=" Add a description" id="mailDescription">
         </div>
         <button type="submit" class="btn btn-success" (click)="addMailType()">Add Template</button>
     </form>
@@ -47,12 +52,16 @@
 <hr>
 <div class="container">
     <h3>Add New Sms Template</h3>
+    <p *ngIf="smsValid" class="alert alert-success">Added Successfully</p>
     <form class="form" #sms="ngForm">
         <div class="form-group">
-            <textarea class="form-control" name="sms" rows="5" #sms="ngModel" ngModel></textarea>
+            <textarea class="form-control" name="sms" rows="5" #sms="ngModel" ngModel id="smsText"></textarea>
         </div>
         <div [hidden]="sms.valid || sms.untouched" class="alert alert-danger col-sm">
             Please enter a valid Sms Body
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Add a description" id="smsDescription">
         </div>
         <button type="submit" class="btn btn-success" (click)="addSmsType()">Add Template</button>
     </form>

@@ -17,12 +17,12 @@ export class UserDashboardComponent implements OnInit {
   userPhone: string;
 
   constructor(private route: Router, private service: EventServiceService) {
-    this.valid = true;
+    this.valid = false;
     this.getData();
 
-    this.userEmail = "sumit.sssingh.singh45@gmail.com";
-    this.userPhone = "8076592203";
-    // load all events with userEmail such as this.
+    this.userEmail = "trekkingSpock7@gmail.com";
+    this.userPhone = "9599758239";
+    // load all events without userEmail such as this.
   }
 
   ngOnInit(): void {
@@ -50,12 +50,15 @@ export class UserDashboardComponent implements OnInit {
       data => {
         console.log("Subscribed");
         this.msg = "You have subscribed to event with Id:" + eventId;
-        this.valid = false;
+        this.valid = true;
       },
       err => {
         console.log("error", err);
       }
     )
+    setTimeout(() => {
+      this.getData();
+    }, 1000);
   }
 
   mylist() {
