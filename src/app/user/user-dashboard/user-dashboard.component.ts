@@ -31,7 +31,13 @@ export class UserDashboardComponent implements OnInit {
   getData() {
     this.service.getAllActiveEvents().subscribe(
       data => {
-        this.events = data;
+        this.events = Object.values(data).filter(i => {
+          if (!i["eventEmails"].includes(this.userEmail)) {
+            return i;
+          }
+        })
+        console.log(this.events);
+        /* this.events = data; */
       },
       err => {
         console.log("error", err);

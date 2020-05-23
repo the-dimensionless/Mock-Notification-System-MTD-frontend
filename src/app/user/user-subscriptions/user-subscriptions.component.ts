@@ -9,8 +9,27 @@ import { Router } from '@angular/router';
 })
 export class UserSubscriptionsComponent implements OnInit {
 
+  msg: string;
+  valid: boolean;
+  events: any;
+
+  userEmail: string;
+  userPhone: string;
+
   constructor(private route: Router, private service: EventServiceService) {
-    // load all active events that donot contain this userEmail
+    // load all active events that do contain this userEmail
+    this.service.getAllActiveEvents().subscribe(
+      data => {
+        this.events = Object.values(data).filter(i => {
+          if (!i["eventEmails"].includes(this.userEmail)) {
+            return i;
+          }
+        })
+      },
+      err => {
+        console.log("error", err);
+      }
+    )
   }
 
   ngOnInit(): void {
@@ -18,5 +37,9 @@ export class UserSubscriptionsComponent implements OnInit {
 
   home() {
     this.route.navigate(["user/dashboard"]);
+  }
+
+  unsubscribe(eventId) {
+
   }
 }

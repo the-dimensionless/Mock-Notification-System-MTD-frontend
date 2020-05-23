@@ -64,7 +64,6 @@ export class EventServiceService {
   }
 
   userSubscribes(eventId, email, phone) {
-
     return this.http.get("server/events/subscribe/" + eventId + "/" + email + "/" + phone);
   }
 
