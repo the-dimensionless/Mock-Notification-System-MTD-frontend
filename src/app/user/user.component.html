@@ -1,0 +1,24 @@
+<nav class="navbar navbar-dark bg-dark">
+    <div>
+        <h2>User Panel</h2>
+    </div>
+</nav>
+<hr><br>
+<div class="container">
+    <div class="form col-6">
+        <form action="#">
+            <div class="form-group">
+                <label for="email">Enter email id</label>
+                <input type="email" class="form-control" placeholder="...@nagarro" id="emailId" pattern=".+@nagarro.com"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="password">Enter Password</label>
+                <input type="password" class="form-control" placeholder="Enter password" id="password" required>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" (click)="login()">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
