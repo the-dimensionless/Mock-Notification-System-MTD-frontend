@@ -1,0 +1,15 @@
+.navbar {
+    color: aliceblue;
+}
+
+.container {
+    padding-left: 28%;
+}
+
+.form {
+    padding-top: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 3%;
+    border-style: solid;
+}

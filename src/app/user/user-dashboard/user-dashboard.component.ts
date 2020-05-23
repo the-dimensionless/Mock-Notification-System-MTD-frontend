@@ -22,6 +22,7 @@ export class UserDashboardComponent implements OnInit {
 
     this.userEmail = "sumit.sssingh.singh45@gmail.com";
     this.userPhone = "8076592203";
+    // load all events with userEmail such as this.
   }
 
   ngOnInit(): void {

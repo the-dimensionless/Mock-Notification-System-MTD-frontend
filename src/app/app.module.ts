@@ -15,6 +15,7 @@ import { EditsComponent } from './admin/edits/edits.component';
 import { CustomizeComponent } from './admin/customize/customize.component';;
 import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
 import { UserComponent } from './user/user.component';
+import { UserSubscriptionsComponent } from './user/user-subscriptions/user-subscriptions.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { UserComponent } from './user/user.component';
     CustomizeComponent,
     UserComponent,
     UserDashboardComponent,
+    UserSubscriptionsComponent,
   ],
   imports: [
     BrowserModule,
