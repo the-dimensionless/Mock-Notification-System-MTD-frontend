@@ -13,6 +13,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { EventServiceService } from './services/event-service.service';
 import { EditsComponent } from './admin/edits/edits.component';
 import { CustomizeComponent } from './admin/customize/customize.component';
+import { UserComponent } from './user/user/user.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { CustomizeComponent } from './admin/customize/customize.component';
     DashboardComponent,
     EditsComponent,
     CustomizeComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
