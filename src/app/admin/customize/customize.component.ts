@@ -38,7 +38,6 @@ export class CustomizeComponent implements OnInit {
   }
 
   addEventType() {
-    console.log("We are here: event type");
     let body = {
       "eventType": (<HTMLInputElement>document.getElementById("eventType")).value
     }
@@ -53,33 +52,30 @@ export class CustomizeComponent implements OnInit {
   }
 
   addSmsType() {
-    console.log("We are here: sms type");
     let body = {
       "templateDescription": (<HTMLInputElement>document.getElementById("smsDescription")).value,
       "smsBody": (<HTMLInputElement>document.getElementById("smsText")).value
     };
-    console.log(body);
     this.service.addSmsType(body).subscribe(
       data => {
-        console.log("sms type added", data);
         this.smsValid = true;
       },
       err => {
-        console.log("error", err);
+        /* console.log("error", err); */
       }
     )
   }
 
   addMailType() {
-    console.log("We are here: mail type");
     let body = {
       "templateDescription": (<HTMLInputElement>document.getElementById("mailDescription")).value,
       "mailBody": this.editorComponent.editorInstance.getData()
     };
-    console.log(body);
+    /* console.log(body); */
     this.service.addMailType(body).subscribe(
       data => {
-        console.log("mail type added", data);
+        /* console.log("mail type added", data); */
+        this.editorComponent.editorInstance.setData("");
         this.mailValid = true;
       },
       err => {

@@ -26,12 +26,17 @@ export class DashboardComponent implements OnInit {
 
   smsBody: string;
   event: IEvent = {} as any;
+  date: Date;
+  raised: boolean;
+  msg: string;
 
   constructor(private service: EventServiceService, private route: Router) {
     this.editable = true;
+    this.raised = false;
     this.data = "<p>Hello World !</p>";
     this.loadDefaults();
     this.smsBody = "Sample Text";
+    this.date = new Date(new Date(new Date().getTime() + 1000 * 60 * 60 * 24));
   }
 
   ngOnInit(): void {
@@ -198,6 +203,9 @@ export class DashboardComponent implements OnInit {
         console.log("error", err);
       }
     )
+    this.msg = "Event added successfully !";
+    this.raised = true;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
 }

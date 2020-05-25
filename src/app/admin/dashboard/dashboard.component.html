@@ -16,8 +16,8 @@
 <hr>
 
 <div class="container">
-    <div class="container message">
-
+    <div class="container message" *ngIf="raised">
+        <h3 class="alert alert-success">{{msg}}</h3>
     </div>
     <br>
     <div class="container creation">
@@ -84,7 +84,7 @@
         <br>
         <div class="form-group">
             <label for="event-date">Event Date</label>
-            <input type="date" class="form-control" id="eventDate">
+            <input type="date" class="form-control" id="eventDate" min="{{date.toISOString().split('T')[0]}}">
         </div>
         <br>
         <div class="form-group">
