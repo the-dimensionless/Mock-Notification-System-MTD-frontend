@@ -28,15 +28,6 @@ export class CustomizeComponent implements OnInit {
 
   constructor(private service: EventServiceService, private route: Router) {
     this.eventValid = this.mailValid = this.smsValid = false;
-    /*   this.service.getTest().subscribe(
-        data => {
-          console.log("data", data);
-          this.editorComponent.editorInstance.setData(data["eventMailBody"]);
-        },
-        err => {
-          console.log("error", err);
-        }
-      ) */
   }
 
   ngOnInit(): void {
@@ -82,8 +73,7 @@ export class CustomizeComponent implements OnInit {
   addMailType() {
     console.log("We are here: mail type");
     let body = {
-      "templateDescription": "<html><head></head><body>" +
-        (<HTMLInputElement>document.getElementById("mailDescription")).value + "</body></html>",
+      "templateDescription": (<HTMLInputElement>document.getElementById("mailDescription")).value,
       "mailBody": this.editorComponent.editorInstance.getData()
     };
     console.log(body);

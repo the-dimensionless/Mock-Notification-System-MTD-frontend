@@ -76,7 +76,7 @@
                 placeholder="enter ; separated list of recipients and/or select from below"><br>
             <ul class="checkbox-grid" style="list-style: none;" id="audience-group">
                 <li *ngFor="let user of userDetails">
-                    <input type="checkbox" name="text1" value="{{user.userId}}" class="audience" />
+                    <input type="checkbox" name="text1" value="{{user.userId}}" class="audience" />&nbsp;
                     <label for="text1">{{user.userName}}</label>
                 </li>
             </ul>
@@ -90,8 +90,10 @@
         <div class="form-group">
             <label for="event-mode">Event Communication Mode</label>
             <ul class="checkbox-grid" style="list-style: none;">
-                <li><input type="checkbox" name="text1" value="Sms" class="mode" /><label for="text1">Sms</label></li>
-                <li><input type="checkbox" name="text2" value="Mail" class="mode" /><label for="text2">Mail</label></li>
+                <li><input type="checkbox" name="text1" value="Sms" class="mode" />&nbsp;<label for="text1">Sms</label>
+                </li>
+                <li><input type="checkbox" name="text2" value="Mail" class="mode" />&nbsp;<label
+                        for="text2">Mail</label></li>
             </ul>
         </div><br>
         <div class="container">
