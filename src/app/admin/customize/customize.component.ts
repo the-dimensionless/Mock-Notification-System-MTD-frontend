@@ -64,7 +64,9 @@ export class CustomizeComponent implements OnInit {
       err => {
         /* console.log("error", err); */
       }
-    )
+    );
+    (<HTMLInputElement>document.getElementById("smsDescription")).value = "";
+    (<HTMLInputElement>document.getElementById("smsText")).value = "";
   }
 
   addMailType() {

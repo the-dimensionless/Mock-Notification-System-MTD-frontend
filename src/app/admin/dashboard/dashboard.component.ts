@@ -36,7 +36,8 @@ export class DashboardComponent implements OnInit {
     this.data = "<p>Hello World !</p>";
     this.loadDefaults();
     this.smsBody = "Sample Text";
-    this.date = new Date(new Date(new Date().getTime() + 1000 * 60 * 60 * 24));
+    this.date = new Date();
+    /* this.date = new Date(new Date(new Date().getTime() + 1000 * 60 * 60 * 24)); */
   }
 
   ngOnInit(): void {
