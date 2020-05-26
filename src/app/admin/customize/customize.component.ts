@@ -48,7 +48,8 @@ export class CustomizeComponent implements OnInit {
       err => {
         console.log("error", err);
       }
-    )
+    );
+    (<HTMLInputElement>document.getElementById("eventType")).value = "";
   }
 
   addSmsType() {
